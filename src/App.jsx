@@ -26,7 +26,7 @@ function App() {
         }
         setOrders(data);
       } catch (err) {
-        // // If the API call fails for any reason (network error, API limit, etc.), we log the error and fall back to local backup data.
+        // If the API call fails for any reason (network error, API limit, etc.), we log the error and fall back to local backup data.
         console.warn("External API-error. Activating local failover-data:", err.message);
         setOrders(backupOrders);
         
@@ -102,6 +102,7 @@ function App() {
               <p><strong>Location:</strong> {order.location_name}</p>
               <p><strong>Last updated:</strong> {formatDate(order.last_updated)}</p>
 
+              {/* Display location warning badge if location_status_ok is false */}
               {order.location_status_ok === false && (
                 <div className="alert-badge location-warning">
                   Location issue reported
